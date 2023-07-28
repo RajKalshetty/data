@@ -1,0 +1,87 @@
+class Customer {
+    private String name;
+    private int age;
+    private String email;
+
+    public Customer(String name, int age, String email) {
+        this.name = name;
+        this.age = age;
+        this.email = email;
+    }
+
+    // Getters and setters (You can add more as needed)
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+}
+
+class SinglyLinkedList {
+    private Customer[] customers; // Array to store customer objects
+    private int size; // Current size of the list
+
+    public SinglyLinkedList(int capacity) {
+        this.customers = new Customer[capacity];
+        this.size = 0;
+    }
+
+    public void addCustomer(Customer customer) {
+        if (size < customers.length) {
+            customers[size] = customer;
+            size++;
+        } else {
+            System.out.println("List is full. Cannot add more customers.");
+        }
+    }
+
+    public void displayCustomers() {
+        for (int i = 0; i < size; i++) {
+            Customer current = customers[i];
+            System.out.println("Name: " + current.getName() + ", Age: " + current.getAge() + ", Email: " + current.getEmail());
+        }
+    }
+
+    public Customer searchCustomerByName(String name) {
+        for (int i = 0; i < size; i++) {
+            Customer current = customers[i];
+            if (current.getName().equals(name)) {
+                return current;
+            }
+        }
+        return null;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Creating the singly linked list object with a capacity of 3
+        SinglyLinkedList customerList = new SinglyLinkedList(3);
+
+        // Adding customers to the list using Customer objects
+        customerList.addCustomer(new Customer("Alice", 25, "alice@example.com"));
+        customerList.addCustomer(new Customer("Bob", 30, "bob@example.com"));
+        customerList.addCustomer(new Customer("Charlie", 22, "charlie@example.com"));
+
+        // Displaying all customers in the list
+        customerList.displayCustomers();
+    }
+}

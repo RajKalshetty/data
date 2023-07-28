@@ -1,0 +1,112 @@
+class Customer {
+    private String name;
+    private int age;
+    private String email;
+    private Customer next; // Reference to the next node in the linked list
+
+    public Customer(String name, int age, String email) {
+        this.name = name;
+        this.age = age;
+        this.email = email;
+        this.next = null;
+    }
+
+    // Getters and setters (You can add more as needed)
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Customer getNext() {
+        return next;
+    }
+
+    public void setNext(Customer next) {
+        this.next = next;
+    }
+}
+
+class CircularLinkedList {
+    private Customer head; // Points to the first node in the list
+
+    public CircularLinkedList() {
+        this.head = null;
+    }
+
+    public void addCustomer(Customer customer) {
+        if (head == null) { // If the list is empty
+            head = customer;
+            head.setNext(head); // Circular link to itself
+        } else {
+            Customer current = head;
+            while (current.getNext() != head) {
+                current = current.getNext();
+            }
+            current.setNext(customer);
+            customer.setNext(head); // Circular link back to head
+        }
+    }
+
+    public void displayCustomers() {
+        if (head == null) {
+            System.out.println("No customers in the list.");
+            return;
+        }
+
+        Customer current = head;
+        do {
+            System.out.println("Name: " + current.getName() + ", Age: " + current.getAge() + ", Email: " + current.getEmail());
+            current = current.getNext();
+        } while (current != head);
+    }
+
+    public Customer searchCustomerByName(String name) {
+        if (head == null) {
+            return null;
+        }
+
+        Customer current = head;
+        do {
+            if (current.getName().equals(name)) {
+                return current;
+            }
+            current = current.getNext();
+        } while (current != head);
+
+        return null;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Creating the circular linked list object
+        CircularLinkedList customerList = new CircularLinkedList();
+
+        // Adding customers to the list using Customer objects
+        customerList.addCustomer(new Customer("Alice", 25, "alice@example.com"));
+        customerList.addCustomer(new Customer("Bob", 30, "bob@example.com"));
+        customerList.addCustomer(new Customer("Charlie", 22, "charlie@example.com"));
+
+        // Displaying all customers in the list
+        customerList.displayCustomers();
+    }
+}

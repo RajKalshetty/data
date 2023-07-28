@@ -1,0 +1,245 @@
+
+public class Main {
+    public static void main(String[] args) {
+        SinglyLinkedList linkedList = new SinglyLinkedList();
+        Scanner scanner = new Scanner(System.in);
+
+        int choice;
+        int data;
+        int position;
+
+        while (true) {
+            System.out.println("\nMenu:");
+            System.out.println("1. Insert at the beginning");
+            System.out.println("2. Insert at a particular position");
+            System.out.println("3. Insert at the end");
+            System.out.println("4. Display Linked List");
+            System.out.println("5. Reverse Linked List");
+            System.out.println("6. Display Reverse Linked List");
+            System.out.println("7. Delete at the beginning");
+            System.out.println("8. Delete at a particular position");
+            System.out.println("9. Delete by data");
+            System.out.println("0. Exit");
+
+            System.out.print("Enter your choice: ");
+            choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter data to insert at the beginning: ");
+                    data = scanner.nextInt();
+                    linkedList.insertAtBeginning(data);
+                    break;
+                case 2:
+                    System.out.print("Enter data to insert: ");
+                    data = scanner.nextInt();
+                    System.out.print("Enter the position to insert at: ");
+                    position = scanner.nextInt();
+                    linkedList.insertAtPosition(position, data);
+                    break;
+                case 3:
+                    System.out.print("Enter data to insert at the end: ");
+                    data = scanner.nextInt();
+                    linkedList.insertAtEnd(data);
+                    break;
+                case 4:
+                    System.out.println("Linked List:");
+                    linkedList.displayLinkedList();
+                    break;
+                case 5:
+                    linkedList.reverseLinkedList();
+                    System.out.println("Linked List reversed.");
+                    break;
+                case 6:
+                    System.out.println("Linked List in Reverse:");
+                    linkedList.displayReverse();
+                    break;
+                case 7:
+                    linkedList.deleteAtBeginning();
+                    System.out.println("Deleted at the beginning.");
+                    break;
+                case 8:
+                    System.out.print("Enter the position to delete from: ");
+                    position = scanner.nextInt();
+                    linkedList.deleteAtPosition(position);
+                    break;
+                case 9:
+                    System.out.print("Enter data to delete: ");
+                    data = scanner.nextInt();
+                    linkedList.deleteByData(data);
+                    break;
+                case 0:
+                    System.out.println("Exiting the program.");
+                    scanner.close();
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+    }
+ }
+
+
+
+
+============================
+
+import java.util.Scanner;
+
+public class MenuDrivenProgram {
+
+    public static void main(String[] args) {
+        // Create a Scanner object to read user input
+        Scanner scanner = new Scanner(System.in);
+        
+        // Variable to store the user's choice
+        int choice;
+
+        // Loop until the user chooses to exit
+        while (true) {
+            // Display the menu options
+            System.out.println("Menu:");
+            System.out.println("1. Option 1");
+            System.out.println("2. Option 2");
+            System.out.println("3. Option 3");
+            System.out.println("4. Exit");
+            System.out.print("Enter your choice: ");
+
+            // Read the user's choice
+            try {
+                choice = scanner.nextInt();
+            } catch (Exception e) {
+                // Handle non-integer inputs
+                System.out.println("Invalid input. Please enter a number.");
+                scanner.nextLine(); // Clear the input buffer
+                continue;
+            }
+
+            // Process the user's choice
+            switch (choice) {
+                case 1:
+                    // Code to execute for option 1
+                    System.out.println("You selected Option 1");
+                    break;
+                case 2:
+                    // Code to execute for option 2
+                    System.out.println("You selected Option 2");
+                    break;
+                case 3:
+                    // Code to execute for option 3
+                    System.out.println("You selected Option 3");
+                    break;
+                case 4:
+                    // Exit the program
+                    System.out.println("Exiting...");
+                    scanner.close();
+                    System.exit(0);
+                default:
+                    // Invalid choice
+                    System.out.println("Invalid choice. Please select a valid option.");
+            }
+
+     
+            System.out.println("\nPress Enter to continue...");
+            scanner.nextLine();
+        }
+    }
+}
+
+
+
+==================================================================================================
+
+import java.util.Scanner;
+
+public class MenuDrivenArrayProgram {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        int[] array = null;
+        boolean exit = false;
+
+        while (!exit) {
+            System.out.println("Menu:");
+            System.out.println("1. Create an array");
+            System.out.println("2. Display the array");
+            System.out.println("3. Calculate sum of array elements");
+            System.out.println("4. Find the largest element");
+            System.out.println("5. Find the smallest element");
+            System.out.println("6. Exit");
+            System.out.print("Enter your choice (1-6): ");
+
+            int choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter the size of the array: ");
+                    int size = scanner.nextInt();
+                    array = new int[size];
+                    System.out.println("Enter " + size + " elements:");
+                    for (int i = 0; i < size; i++) {
+                        array[i] = scanner.nextInt();
+                    }
+                    break;
+                case 2:
+                    if (array == null) {
+                        System.out.println("Array is not created yet.");
+                    } else {
+                        System.out.println("Array elements:");
+                        for (int num : array) {
+                            System.out.print(num + " ");
+                        }
+                        System.out.println();
+                    }
+                    break;
+                case 3:
+                    if (array == null) {
+                        System.out.println("Array is not created yet.");
+                    } else {
+                        int sum = 0;
+                        for (int num : array) {
+                            sum += num;
+                        }
+                        System.out.println("Sum of array elements: " + sum);
+                    }
+                    break;
+                case 4:
+                    if (array == null) {
+                        System.out.println("Array is not created yet.");
+                    } else {
+                        int largest = array[0];
+                        for (int num : array) {
+                            if (num > largest) {
+                                largest = num;
+                            }
+                        }
+                        System.out.println("Largest element: " + largest);
+                    }
+                    break;
+                case 5:
+                    if (array == null) {
+                        System.out.println("Array is not created yet.");
+                    } else {
+                        int smallest = array[0];
+                        for (int num : array) {
+                            if (num < smallest) {
+                                smallest = num;
+                            }
+                        }
+                        System.out.println("Smallest element: " + smallest);
+                    }
+                    break;
+                case 6:
+                    exit = true;
+                    System.out.println("Exiting the program. Goodbye!");
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
+
+            System.out.println(); // Add an empty line for better readability
+        }
+
+        scanner.close();
+    }
+}

@@ -1,0 +1,100 @@
+class Customer {
+    private String name;
+    private int age;
+    private String email;
+    private Customer next; // Reference to the next node in the linked list
+
+    public Customer(String name, int age, String email) {
+        this.name = name;
+        this.age = age;
+        this.email = email;
+        this.next = null;
+    }
+
+    // Getters and setters (You can add more as needed)
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Customer getNext() {
+        return next;
+    }
+
+    public void setNext(Customer next) {
+        this.next = next;
+    }
+}
+
+class SinglyLinkedList {
+    private Customer head; // Points to the first node in the list
+
+    public SinglyLinkedList() {
+        this.head = null;
+    }
+
+    public void addCustomer(Customer customer) {
+        if (head == null) { // If the list is empty
+            head = customer;
+        } else {
+            Customer current = head;
+            while (current.getNext() != null) {
+                current = current.getNext();
+            }
+            current.setNext(customer);
+        }
+    }
+
+    public void displayCustomers() {
+        Customer current = head;
+        while (current != null) {
+            System.out.println("Name: " + current.getName() + ", Age: " + current.getAge() + ", Email: " + current.getEmail());
+            current = current.getNext();
+        }
+    }
+
+    public Customer searchCustomerByName(String name) {
+        Customer current = head;
+        while (current != null) {
+            if (current.getName().equals(name)) {
+                return current;
+            }
+            current = current.getNext();
+        }
+        return null;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Creating the singly linked list object
+        SinglyLinkedList customerList = new SinglyLinkedList();
+
+        // Adding customers to the list using Customer objects
+        customerList.addCustomer(new Customer("Alice", 25, "alice@example.com"));
+        customerList.addCustomer(new Customer("Bob", 30, "bob@example.com"));
+        customerList.addCustomer(new Customer("Charlie", 22, "charlie@example.com"));
+
+        // Displaying all customers in the list
+        customerList.displayCustomers();
+    }
+}
